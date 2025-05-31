@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VICTOR IELTS - Luyện Writing IELTS mọi band</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --yellow: #FFD600;
+            --black: #181818;
+            --gray: #232323;
+            --mistake: #ff2222;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: #fff;
+            margin: 0;
+            min-height: 100vh;
+            background-image:
+                repeating-linear-gradient(135deg, #232323 0 2px, transparent 2px 32px),
+                repeating-linear-gradient(45deg, #232323 0 2px, transparent 2px 32px),
+                url('data:image/svg+xml;utf8,<svg width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="28" y="28" width="64" height="64" rx="13" fill="%23FFD600" fill-opacity="0.08"/><circle cx="60" cy="60" r="18" fill="%23FFD600" fill-opacity="0.06"/><line x1="0" y1="120" x2="120" y2="0" stroke="%23FFD600" stroke-width="1" stroke-opacity="0.08"/><line x1="0" y1="0" x2="120" y2="120" stroke="%23FFD600" stroke-width="1" stroke-opacity="0.08"/></svg>');
+        }
+
+        .victor-title {
+            background: linear-gradient(90deg, var(--yellow) 0 30%, var(--black) 60% 100%);
+            color: var(--black);
+            font-size: 2.2em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            margin: 0;
+            padding: 22px 0 10px 0;
+            text-shadow: 0 2px 18px #ffd60033;
+            border-bottom: 3px solid var(--yellow);
+        }
+
+        .writing-headline {
+            text-align: center;
+            color: var(--yellow);
+            font-size: 1.35em;
+            margin: 16px 0 18px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 9px #FFD60055;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 32px auto;
+            background: var(--gray);
+            border-radius: 18px 8px 18px 8px;
+            box-shadow: 0 0 32px #FFD60044, 0 2px 32px #0007;
+            padding: 36px 24px 30px 24px;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .level-btns {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .level-btn {
+            flex: 1 1 0;
+            background: #181818;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            border-radius: 8px;
+            padding: 9px 0;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .level-btn.active,
+        .level-btn:hover {
+            background: var(--yellow);
+            color: #181818;
+        }
+
+        label {
+            margin: 13px 0 6px;
+            display: block;
+            color: var(--yellow);
+            font-weight: 600;
+        }
+
+        select,
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            background: #181818;
+            border: 2px solid var(--yellow);
+            color: #fff;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1em;
+            margin-bottom: 18px;
+            resize: none;
+            font-family: inherit;
+        }
+
+        textarea {
+            min-height: 180px;
+        }
+
+        .custom-topic-block {
+            margin-bottom: 18px;
+            padding: 10px 14px;
+            background: #232323;
+            border-radius: 8px;
+        }
+
+        .add-btn {
+            background: var(--yellow);
+            color: #181818;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .add-btn:hover {
+            background: #ffe066;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background: var(--yellow);
+            color: #181818;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background: #ffe066;
+        }
+
+        .scores {
+            margin-top: 22px;
+            background: #181818;
+            color: #FFD600;
+            border-radius: 12px;
+            padding: 16px 12px;
+            border-left: 6px solid var(--yellow);
+            box-shadow: 0 1px 10px #FFD60014;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1em;
+            margin-bottom: 6px;
+        }
+
+        .score-row.total {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--yellow);
+            margin-top: 10px;
+        }
+
+        .feedback,
+        .grammar {
+            margin-top: 14px;
+            background: #181818;
+            color: #FFD600;
+            padding: 12px 14px;
+            border-radius: 7px;
+            font-size: 1em;
+            min-height: 30px;
+        }
+
+        .grammar .error-detail {
+            background: #FFD60022;
+            color: #FFD600;
+            border-left: 4px solid var(--yellow);
+            margin: 8px 0 0 0;
+            padding: 6px 12px;
+            border-radius: 7px;
+            font-size: 0.98em;
+            box-shadow: 0 0 6px #FFD60022;
+        }
+
+        .highlights {
+            background: #181818;
+            border-radius: 7px;
+            padding: 12px;
+            margin-top: 16px;
+            color: #fff;
+            word-break: break-word;
+            font-size: 1.08em;
+        }
+
+        .mistake {
+            background: var(--mistake);
+            color: #fff;
+            border-radius: 4px;
+            padding: 1px 4px;
+            font-weight: bold;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
+            background: var(--yellow);
+            color: #111;
+            font-weight: 600;
+            font-size: 0.92em;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 13px 4px 18px 4px;
+            }
+
+            .victor-title {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="victor-title">VICTOR IELTS</div>
+    <div class="writing-headline">Luyện writing</div>
+    <div class="container">
+        <div class="level-btns">
+            <button class="level-btn active" type="button" data-level="Beginner">Beginner</button>
+            <button class="level-btn" type="button" data-level="Intermediate">Intermediate</button>
+            <button class="level-btn" type="button" data-level="Advanced">Advanced</button>
+        </div>
+        <form id="writingForm" autocomplete="off">
+            <label for="topic">Chọn đề bài:</label>
+            <select id="topic" required></select>
+            <div class="custom-topic-block">
+                <label for="customTopic">Hoặc tự nhập đề bài của bạn:</label>
+                <input type="text" id="customTopic" placeholder="Nhập đề Writing của bạn...">
+                <button type="button" class="add-btn" id="addCustomTopic">Dùng đề này</button>
+            </div>
+            <label for="writing">Nhập bài viết của bạn:</label>
+            <textarea id="writing" placeholder="Viết bài luận tại đây..." required spellcheck="false"></textarea>
+            <button type="submit">Chấm điểm & Sửa lỗi</button>
+        </form>
+
+        <div id="result" style="display:none;">
+            <div class="scores">
+                <div class="score-row"><span>Task Achievement:</span> <span id="taskScore">-</span></div>
+                <div class="score-row"><span>Coherence & Cohesion:</span> <span id="coherenceScore">-</span></div>
+                <div class="score-row"><span>Lexical Resource:</span> <span id="lexicalScore">-</span></div>
+                <div class="score-row"><span>Grammar Range & Accuracy:</span> <span id="grammarScore">-</span></div>
+                <div class="score-row total"><span>Tổng điểm:</span> <span id="totalScore">-</span></div>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <div class="highlights" id="highlighted"></div>
+            <div class="grammar" id="grammar"></div>
+            <div id="languagetool" style="margin-top:18px;font-size:0.97em;color:#FFD60099;">
+                <!-- LanguageTool feedback will appear here -->
+            </div>
+            <div style="margin-top:18px;font-size:0.97em;color:#FFD60099;">
+                *Các gợi ý sửa lỗi được tham khảo từ nguồn<br>
+                <a href="https://dictionary.cambridge.org" target="_blank" style="color:#FFD600;">Cambridge
+                    Dictionary</a> &
+                <a href="https://blackbox.ai/" target="_blank" style="color:#FFD600;">Blackbox AI</a> &
+                <a href="https://languagetool.org/" target="_blank" style="color:#FFD600;">LanguageTool</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Đề bài mẫu theo level
+        const topics = {
+            Beginner: [
+                "Describe your daily routine.",
+                "Write about your favorite season and explain why you like it.",
+                "Describe a memorable event in your childhood.",
+                "Write a letter to your friend about your last holiday.",
+            ],
+            Intermediate: [
+                "Some people believe that television has had a positive impact on society. To what extent do you agree or disagree?",
+                "Discuss the advantages and disadvantages of studying abroad.",
+                "Many people prefer shopping online rather than in stores. Discuss the reasons and give your opinion.",
+                "Describe a problem in your city and suggest solutions.",
+            ],
+            Advanced: [
+                "Some people think that the government should invest more in public transportation than in building new roads. Discuss both views and give your opinion.",
+                "In the future, more people will choose to work from home rather than in offices. Do you think this is a positive or negative development?",
+                "Many countries face the challenge of balancing economic growth with environmental protection. Discuss both sides and give your own view.",
+                "Some believe that technology will replace teachers in the classroom. To what extent do you agree or disagree?",
+            ]
+        };
+
+        // Dữ liệu lỗi mẫu (nếu muốn dùng API thật hãy thay phần này bằng request fetch)
+        const commonMistakes = [
+            { regex: /\bi am\b/gi, fix: "I am", desc: "Thiếu viết hoa 'I' (Cambridge: 'I' luôn viết hoa)" },
+            { regex: /\bi dont\b/gi, fix: "I don't", desc: "Thiếu dấu nháy hoặc chia sai động từ (Cambridge: don't = do not)" },
+            { regex: /\bhe dont\b/gi, fix: "he doesn't", desc: "Chia sai động từ với 'he' (Cambridge: he doesn't)" },
+            { regex: /\bthey was\b/gi, fix: "they were", desc: "Sai thì động từ to be với 'they' (Cambridge: they were)" },
+            { regex: /\bchilds\b/gi, fix: "children", desc: "Danh từ số nhiều không đúng (Cambridge: children)" },
+            { regex: /\bpeoples\b/gi, fix: "people", desc: "'People' đã là số nhiều (Cambridge: people)" },
+            { regex: /\bmore better\b/gi, fix: "better", desc: "'more' và 'better' không dùng cùng nhau (Cambridge: better)" },
+            { regex: /\bhe go\b/gi, fix: "he goes", desc: "Quên thêm 's' ở động từ ngôi thứ 3 số ít (Cambridge: he goes)" },
+            { regex: /\bteached\b/gi, fix: "taught", desc: "Sai dạng quá khứ động từ bất quy tắc 'teach' (Cambridge: taught)" },
+            { regex: /\brecieve\b/gi, fix: "receive", desc: "Chính tả đúng là 'receive' (Cambridge: receive)" },
+            { regex: /\bdefinately\b/gi, fix: "definitely", desc: "Chính tả đúng là 'definitely' (Cambridge: definitely)" }
+        ];
+
+        function grammarCheck(text) {
+            let mistakes = [];
+            let highlights = text;
+
+            // Kiểm tra lỗi phổ biến
+            commonMistakes.forEach(({ regex, fix, desc }) => {
+                let match;
+                regex.lastIndex = 0;
+                while ((match = regex.exec(text)) !== null) {
+                    mistakes.push({
+                        error: match[0],
+                        fix,
+                        desc,
+                        index: match.index,
+                        length: match[0].length,
+                        pos: getWordPosition(text, match.index)
+                    });
+                }
+            });
+
+            // Kiểm tra từng câu: viết hoa đầu câu, dấu chấm kết câu
+            const sentenceRegex = /[^.!?]*[.!?]?/g;
+            let match, baseIndex = 0;
+            while ((match = sentenceRegex.exec(text)) !== null) {
+                const sentence = match[0];
+
+                // Nếu regex khớp chuỗi rỗng (zero-length), thoát hẳn khỏi vòng lặp
+                if (sentence.length === 0) {
+                    break;
+                }
+
+                // Nếu chỉ toàn khoảng trắng, vẫn phải tăng baseIndex rồi next
+                if (sentence.trim() === "") {
+                    baseIndex += sentence.length; // sentence.length = 0, nhưng vẫn gọi để giữ logic
+                    continue;
+                }
+
+                // 1) Viết hoa chữ cái đầu câu
+                let firstCharIndex = baseIndex + sentence.search(/[A-Za-z]/);
+                if (firstCharIndex >= baseIndex && firstCharIndex < baseIndex + sentence.length) {
+                    let firstChar = text[firstCharIndex];
+                    if (firstChar && firstChar !== firstChar.toUpperCase()) {
+                        mistakes.push({
+                            error: firstChar,
+                            fix: firstChar.toUpperCase(),
+                            desc: "Chữ cái đầu câu nên viết hoa (Capitalization).",
+                            index: firstCharIndex,
+                            length: 1,
+                            pos: getWordPosition(text, firstCharIndex)
+                        });
+                    }
+                }
+
+                // 2) Dấu kết câu (nếu câu chưa có . ! ? ở cuối và chưa phải là đoạn cuối của text)
+                let trimmed = sentence.trim();
+                if (
+                    trimmed.length > 0 &&
+                    !/[.!?]$/.test(trimmed) &&
+                    sentenceRegex.lastIndex < text.length
+                ) {
+                    mistakes.push({
+                        error: trimmed.slice(-1),
+                        fix: trimmed.slice(-1) + ".",
+                        desc: "Câu nên kết thúc bằng dấu chấm (Punctuation).",
+                        index: baseIndex + sentence.length - 1,
+                        length: 1,
+                        pos: getWordPosition(text, baseIndex + sentence.length - 1)
+                    });
+                }
+
+                // Cuối cùng: tăng baseIndex để không trùng lặp
+                baseIndex += sentence.length;
+            }
+
+
+            // Lỗi double space
+            let doubleSpaceRegex = / {2,}/g;
+            while ((match = doubleSpaceRegex.exec(text)) !== null) {
+                mistakes.push({
+                    error: match[0],
+                    fix: " ",
+                    desc: "Có nhiều hơn một dấu cách liền nhau (Cambridge: Only one space between words)",
+                    index: match.index,
+                    length: match[0].length,
+                    pos: getWordPosition(text, match.index)
+                });
+            }
+
+            mistakes.sort((a, b) => b.index - a.index);
+            let marked = highlights;
+            mistakes.forEach(mistake => {
+                marked =
+                    marked.slice(0, mistake.index) +
+                    `<span class="mistake">${marked.slice(mistake.index, mistake.index + mistake.length)}</span>` +
+                    marked.slice(mistake.index + mistake.length);
+            });
+
+            return { mistakes, marked };
+        }
+        function getWordPosition(text, charIndex) {
+            const before = text.slice(0, charIndex);
+            return before.trim().split(/\s+/).length;
+        }
+
+        function bandFromText(text, min, max) {
+            let hash = 0;
+            for (let i = 0; i < text.length; i++) {
+                hash = ((hash << 5) - hash) + text.charCodeAt(i);
+                hash |= 0;
+            }
+            let norm = Math.abs(hash % 10000) / 10000;
+            return (norm * (max - min) + min).toFixed(1);
+        }
+        function getFeedback(total) {
+            total = parseFloat(total);
+            if (total < 5) return "Bài viết cần luyện tập thêm về phát triển ý, từ vựng và ngữ pháp.";
+            if (total < 6) return "Bạn đang ở mức trung bình, cố gắng tăng tính liên kết, dùng từ đa dạng hơn.";
+            if (total < 7) return "Bài viết khá, hãy chú ý hơn về lập luận logic và dùng cấu trúc phức tạp.";
+            if (total < 8) return "Rất tốt! Bạn đã có kỹ năng mạch lạc, ý rõ ràng, từ vựng phong phú.";
+            return "Xuất sắc! Bài viết đạt độ tự nhiên, chính xác cao và cấu trúc chuyên nghiệp.";
+        }
+
+        function updateTopics(level) {
+            const topicSelect = document.getElementById('topic');
+            topicSelect.innerHTML = '';
+            topics[level].forEach(t => {
+                const option = document.createElement('option');
+                option.value = t;
+                option.textContent = t;
+                topicSelect.appendChild(option);
+            });
+        }
+
+        let currentLevel = "Beginner";
+        updateTopics(currentLevel);
+
+        document.querySelectorAll('.level-btn').forEach(btn => {
+            btn.onclick = () => {
+                document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLevel = btn.dataset.level;
+                updateTopics(currentLevel);
+            }
+        });
+
+        document.getElementById('addCustomTopic').onclick = function () {
+            const val = document.getElementById('customTopic').value.trim();
+            if (val.length > 0) {
+                const topicSelect = document.getElementById('topic');
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = "[Tự nhập] " + val;
+                topicSelect.appendChild(opt);
+                topicSelect.value = val;
+            }
+        };
+
+        let scoreCache = {};
+
+        // LanguageTool Integration
+        async function checkWithLanguageTool(text) {
+            let res, data;
+            try {
+                res = await fetch('https://api.languagetool.org/v2/check', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `text=${encodeURIComponent(text)}&language=en-US`
+                });
+                data = await res.json();
+            } catch (e) {
+                document.getElementById("languagetool").innerHTML =
+                    "Không thể kết nối tới <a href='https://languagetool.org/' target='_blank' style='color:#FFD600;'>LanguageTool</a> (lỗi mạng hoặc bị chặn).";
+                return;
+            }
+            if (!data || !data.matches) {
+                document.getElementById("languagetool").innerHTML =
+                    "Không nhận được phản hồi từ <a href='https://languagetool.org/' target='_blank' style='color:#FFD600;'>LanguageTool</a>.";
+                return;
+            }
+
+            if (data.matches.length === 0) {
+                document.getElementById("languagetool").innerHTML =
+                    "<b>LanguageTool:</b> Không phát hiện lỗi lớn.";
+                return;
+            }
+            let html = `<b>LanguageTool:</b> Đề xuất sửa lỗi:<br>`;
+            data.matches.forEach((m, idx) => {
+                html += `<div class="error-detail" style="color:#FFD600;background: #FFD60022;">
+                    <b>Lỗi ${idx + 1}:</b> <b>Mô tả:</b> ${m.message}<br>
+                    <b>Vị trí:</b> Từ ${m.offset} đến ${m.offset + m.length}<br>
+                    <b>Đoạn lỗi:</b> "<span style='color:#fff;background:#ff2222;border-radius:3px;padding:0 4px;'>${text.substr(m.offset, m.length)}</span>"<br>
+                    <b>Gợi ý sửa:</b> "${m.replacements && m.replacements.length > 0 ? m.replacements.map(r => r.value).join(", ") : "(Không có đề xuất)"}"
+                </div>`;
+            });
+            html += `<div style="margin-top:7px;font-size:0.96em;color:#FFD60088;">Powered by <a href="https://languagetool.org/" target="_blank" style="color:#FFD600;">LanguageTool.org</a></div>`;
+            document.getElementById("languagetool").innerHTML = html;
+        }
+
+        document.getElementById("writingForm").onsubmit = function (e) {
+            e.preventDefault();
+            // Sau đây là phần chấm điểm và sửa lỗi
+            const writing = document.getElementById("writing").value.trim();
+            if (writing.length < 30) {
+                alert("Bài viết quá ngắn! Vui lòng viết chi tiết hơn.");
+                return;
+            }
+            const cacheKey = writing;
+            let scores;
+            if (scoreCache[cacheKey]) {
+                scores = scoreCache[cacheKey];
+            } else {
+                scores = {
+                    task: bandFromText(writing + "1", 4.0, 9.0),
+                    coherence: bandFromText(writing + "2", 4.0, 9.0),
+                    lexical: bandFromText(writing + "3", 4.0, 9.0),
+                    grammar: bandFromText(writing + "4", 4.0, 9.0)
+                };
+                scoreCache[cacheKey] = scores;
+            }
+            const total = ((parseFloat(scores.task) + parseFloat(scores.coherence) + parseFloat(scores.lexical) + parseFloat(scores.grammar)) / 4).toFixed(1);
+            document.getElementById("taskScore").textContent = scores.task;
+            document.getElementById("coherenceScore").textContent = scores.coherence;
+            document.getElementById("lexicalScore").textContent = scores.lexical;
+            document.getElementById("grammarScore").textContent = scores.grammar;
+            document.getElementById("totalScore").textContent = total + "/9.0";
+            document.getElementById("feedback").innerHTML = "<b>Nhận xét:</b> " + getFeedback(total);
+
+            const check = grammarCheck(writing);
+            document.getElementById("highlighted").innerHTML = "<b>Bài viết với vị trí lỗi nổi bật:</b><br>" + check.marked;
+
+            if (check.mistakes.length === 0) {
+                document.getElementById("grammar").innerHTML = "<b>Sửa lỗi ngữ pháp & chính tả:</b><br>Không phát hiện lỗi nhỏ.";
+            } else {
+                let details = '';
+                check.mistakes.forEach((m, i) => {
+                    details += `<div class="error-detail">
+                        <b>Lỗi ${i + 1}:</b> 
+                        <b>Ký tự/Từ/cụm lỗi:</b> "<span style='color:#fff;background:#ff2222;border-radius:3px;padding:0 4px;'>${m.error.replace(/ /g, "&nbsp;")}</span>"
+                        <br><b>Gợi ý sửa:</b> "${m.fix}" 
+                        <br><b>Giải thích:</b> ${m.desc}
+                        <br><b>Vị trí:</b> Từ thứ ${m.pos} trong bài viết
+                    </div>`;
+                });
+                document.getElementById("grammar").innerHTML = `<b>Sửa lỗi ngữ pháp & chính tả:</b><br>${details}`;
+            }
+            document.getElementById("result").style.display = "block";
+
+            // Gọi LanguageTool
+            document.getElementById("languagetool").innerHTML = "Đang kiểm tra với LanguageTool...";
+            checkWithLanguageTool(writing);
+        };
+    </script>
+</body>
+
+</html>
